@@ -1,0 +1,16 @@
+This script formats the A and B dat files so they can be plotted
+in GNUPLOT and curve fit to find the characteristic curve for the
+detectors.
+
+Step1.  Extract the A and B data from the log file using testgrafix>fileover>export excel
+Step2.  There will be to CSV files one for A and one for B.  They must have
+names of the form *A.dat and *B.dat
+Step3.  Put the dat files in teh same directory as makeplot.scr
+Step4.  Run makeplot.scr
+Step5.  This will process the data making a newfile called plba
+	that contains the minA for each B
+Step6.  Gnuplot should start automatically, type load 'plot.plt'
+	to do the curve fit. depending on the data you may need
+	to change the range for the curve fit
+	fit [from:to' f(x) "plba" via a2, a1, a0
+	the coefficients will be stored in the logfile

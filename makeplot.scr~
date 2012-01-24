@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+echo 'making A into column format'
+cat *A.dat | tr "," "\n" > rawa
+echo 'making B into column format'
+cat *B.dat | tr "," "\n" > rawb
+echo 'pasting b and a together'
+paste rawb rawa > rawba
+echo 'sorting'
+sort -k1n,1 -k2n,2 rawba > soba
+echo 'keeping only minA for each B'
+echo '#Column 1 is B, column 2 is minA for that B' > plba
+uniq -w5 soba >>plba
+echo
+echo 'removing temp files'
+rm rawa rawb rawba soba
+echo
+echo 'job done plba ready for plot'
+gnuplot
